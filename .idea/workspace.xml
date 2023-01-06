@@ -10,6 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25d5a51-2eb9-4e8f-9ff7-7db4aa5b3190" name="Changes" comment="edge detection">
+      <change beforePath="$PROJECT_DIR$/../../android/src/main/kotlin/com/sample/edgedetection/scan/ScanPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../android/src/main/kotlin/com/sample/edgedetection/scan/ScanPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,14 +19,21 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\USER\.android\avd\Pixel_6_Pro_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.0.125:5555]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -54,7 +63,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../flower-main/flower-main/examples/android" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -139,7 +148,35 @@
       <option name="project" value="LOCAL" />
       <updated>1672965987502</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="edge detection">
+      <created>1672966857579</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672966857579</updated>
+    </task>
+    <task id="LOCAL-00003" summary="edge detection">
+      <created>1672966920053</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672966920053</updated>
+    </task>
+    <task id="LOCAL-00004" summary="edge detection">
+      <created>1672966936048</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672966936048</updated>
+    </task>
+    <task id="LOCAL-00005" summary="edge detection">
+      <created>1672967029304</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672967029304</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
