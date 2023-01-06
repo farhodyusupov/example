@@ -52,6 +52,10 @@ class ScanPresenter(
 ) :
     SurfaceHolder.Callback, Camera.PictureCallback, Camera.PreviewCallback {
     private val TAG: String = "ScanPresenter"
+<<<<<<< HEAD
+=======
+    private val TAG2: String = "test"
+>>>>>>> f669b12 (sadfgsadf)
     private var mCamera: Camera? = null
     private val mSurfaceHolder: SurfaceHolder = iView.getSurfaceView().holder
     private val executor: ExecutorService
@@ -73,7 +77,11 @@ class ScanPresenter(
 
     //???????
     private fun isOpenRecently(): Boolean {
+<<<<<<< HEAD
         if (SystemClock.elapsedRealtime() - mLastClickTime < 300) {
+=======
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 30) {
+>>>>>>> f669b12 (sadfgsadf)
             return true
         }
         mLastClickTime = SystemClock.elapsedRealtime()
@@ -287,6 +295,7 @@ class ScanPresenter(
                 mat.release()
                     shutted = true;
                     busy = false
+<<<<<<< HEAD
                 images.add(pic)
 
                 Log.i(TAG, "Taking picture")
@@ -299,10 +308,41 @@ class ScanPresenter(
                     fiveImageIntent.putExtra("images", images)
                     (context as Activity).startActivity(fiveImageIntent);
                 //                        detectEdge(images.last())
+=======
+
+                images.add(pic)
+
+                Log.i(TAG2, "Taking picture")
+                Log.i(TAG2, images.size.toString())
+                stop()
+                start()
+                if(images.size>4) {
+
+                    var testbundel =  Bundle()
+                   val fiveImageIntent = Intent(context, FiveImageActivity::class.java);
+                    testbundel.putSerializable("ARRAYLIST",images)
+
+                    fiveImageIntent.apply {
+                        this.putExtra("test" , "testbundel")
+                        Log.i(TAG2, testbundel.toString())
+                    }
+
+                    (context as Activity).startActivity(fiveImageIntent);
+                                    //    detectEdge(images.last())
+>>>>>>> f669b12 (sadfgsadf)
                 }
 //                images.clear()
             }
     }
+<<<<<<< HEAD
+=======
+    /*these changes will be in next .apk
+    1. complete chart
+    2. responsive UI
+    3. last scann will be saved as local cache
+
+    * */
+>>>>>>> f669b12 (sadfgsadf)
 
     @SuppressLint("CheckResult")
     override fun onPreviewFrame(p0: ByteArray?, p1: Camera?) {
