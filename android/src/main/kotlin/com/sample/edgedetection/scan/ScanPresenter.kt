@@ -5,10 +5,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
+import android.graphics.*
 import android.graphics.Point
 import android.graphics.Rect
-import android.graphics.YuvImage
 import android.hardware.Camera
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
@@ -30,15 +29,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_scan.*
 import org.opencv.android.Utils
-import org.opencv.core.Core
-import org.opencv.core.CvType
-import org.opencv.core.Mat
-import org.opencv.core.Size
+import org.opencv.core.*
 import org.opencv.imgcodecs.Imgcodecs
 import org.opencv.imgproc.Imgproc
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
-import java.io.Serializable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.max
@@ -52,10 +49,6 @@ class ScanPresenter(
 ) :
     SurfaceHolder.Callback, Camera.PictureCallback, Camera.PreviewCallback {
     private val TAG: String = "ScanPresenter"
-<<<<<<< HEAD
-=======
-    private val TAG2: String = "test"
->>>>>>> f669b12 (sadfgsadf)
     private var mCamera: Camera? = null
     private val mSurfaceHolder: SurfaceHolder = iView.getSurfaceView().holder
     private val executor: ExecutorService
@@ -65,9 +58,8 @@ class ScanPresenter(
     private var flashEnabled: Boolean = false;
     private var mLastClickTime = 0L
     private var shutted: Boolean = true
-     var images = ArrayList<Mat>()
-    private var cnt = 0
- var bundle=Bundle()
+
+    var images = ArrayList<Bitmap>()
 
     init {
         mSurfaceHolder.addCallback(this)
@@ -77,11 +69,7 @@ class ScanPresenter(
 
     //???????
     private fun isOpenRecently(): Boolean {
-<<<<<<< HEAD
         if (SystemClock.elapsedRealtime() - mLastClickTime < 300) {
-=======
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 30) {
->>>>>>> f669b12 (sadfgsadf)
             return true
         }
         mLastClickTime = SystemClock.elapsedRealtime()
@@ -108,7 +96,8 @@ class ScanPresenter(
         }
 
         mCamera?.autoFocus { b, _ ->
-            mCamera?.enableShutterSound(true)
+//            for production enableShutterSound should be true
+            mCamera?.enableShutterSound(false)
             mCamera?.takePicture(null, null, this,this )
         }
         busy = false
@@ -243,16 +232,15 @@ class ScanPresenter(
         mCamera?.enableShutterSound(false)
 
     }
-
+    // this func must take image path and detect the edge of image and save the image again it`s path
     fun detectEdge(pic: Mat) {
-        var cnt = 0;
-            SourceManager.corners = processPicture(pic)
-            Imgproc.cvtColor(pic, pic, Imgproc.COLOR_RGB2BGRA)
-            SourceManager.pic = pic
+        SourceManager.corners = processPicture(pic)
+        Imgproc.cvtColor(pic, pic, Imgproc.COLOR_RGB2BGRA)
+        SourceManager.pic = pic
 
-            val cropIntent = Intent(context, CropActivity::class.java);
-            cropIntent.putExtra(EdgeDetectionHandler.INITIAL_BUNDLE, this.initialBundle)
-            (context as Activity).startActivityForResult(cropIntent, REQUEST_CODE);
+        val cropIntent = Intent(context, CropActivity::class.java);
+        cropIntent.putExtra(EdgeDetectionHandler.INITIAL_BUNDLE, this.initialBundle)
+        (context as Activity).startActivityForResult(cropIntent, REQUEST_CODE);
 
 
         images.clear()
@@ -293,56 +281,73 @@ class ScanPresenter(
                 val pic = Imgcodecs.imdecode(mat, Imgcodecs.CV_LOAD_IMAGE_UNCHANGED)
                 Core.rotate(pic, pic, Core.ROTATE_90_CLOCKWISE)
                 mat.release()
-                    shutted = true;
-                    busy = false
-<<<<<<< HEAD
-                images.add(pic)
-
-                Log.i(TAG, "Taking picture")
-                Log.i(TAG, images.size.toString())
+                images.add(convertMatToBitMap(pic))
+                shutted = true;
+                busy = false
                 stop()
                 start()
                 if(images.size==5){
-                    val fiveImageIntent = Intent(context, FiveImageActivity::class.java);
-                    bundle.putSerializable("ARRAYLIST",images)
-                    fiveImageIntent.putExtra("images", images)
+                    stop()
+                    val file1 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO1) as String);
+                    val file2 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO2) as String);
+                    val file3 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO3) as String);
+                    val file4 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO4) as String);
+                    val file5 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO5) as String);
+                    val outStream1 = FileOutputStream(file1)
+                    val outStream2 = FileOutputStream(file2)
+                    val outStream3 = FileOutputStream(file3)
+                    val outStream4 = FileOutputStream(file4)
+                    val outStream5 = FileOutputStream(file5)
+                    images[0].compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
+                    images[1].compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
+                    images[2].compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
+                    images[3].compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
+                    images[4].compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
+                    outStream1.flush()
+                    outStream2.flush()
+                    outStream3.flush()
+                    outStream4.flush()
+                    outStream5.flush()
+                    outStream1.close()
+                    outStream2.close()
+                    outStream3.close()
+                    outStream4.close()
+                    outStream5.close()
+                    images[0].recycle()
+                    images[1].recycle()
+                    images[2].recycle()
+                    images[3].recycle()
+                    images[4].recycle()
+                    val bundle = Bundle();
+                    val fiveImageIntent = Intent(context, FiveImageActivity::class.java)
+                    fiveImageIntent.putExtra("fiveImageBundle", bundle)
+
+                    fiveImageIntent.putExtra("image1", initialBundle.getString(EdgeDetectionHandler.SAVE_TO1) as String)
+                    fiveImageIntent.putExtra("image2", initialBundle.getString(EdgeDetectionHandler.SAVE_TO2) as String)
+                    fiveImageIntent.putExtra("image3", initialBundle.getString(EdgeDetectionHandler.SAVE_TO3) as String)
+                    fiveImageIntent.putExtra("image4", initialBundle.getString(EdgeDetectionHandler.SAVE_TO4) as String)
+                    fiveImageIntent.putExtra("image5", initialBundle.getString(EdgeDetectionHandler.SAVE_TO5) as String)
                     (context as Activity).startActivity(fiveImageIntent);
-                //                        detectEdge(images.last())
-=======
 
-                images.add(pic)
+//                                            detectEdge(pic)
+//                    val file = File(initialBundle.getString(EdgeDetectionHandler.IMAGE_LIST) as String);
 
-                Log.i(TAG2, "Taking picture")
-                Log.i(TAG2, images.size.toString())
-                stop()
-                start()
-                if(images.size>4) {
-
-                    var testbundel =  Bundle()
-                   val fiveImageIntent = Intent(context, FiveImageActivity::class.java);
-                    testbundel.putSerializable("ARRAYLIST",images)
-
-                    fiveImageIntent.apply {
-                        this.putExtra("test" , "testbundel")
-                        Log.i(TAG2, testbundel.toString())
-                    }
-
-                    (context as Activity).startActivity(fiveImageIntent);
-                                    //    detectEdge(images.last())
->>>>>>> f669b12 (sadfgsadf)
                 }
 //                images.clear()
             }
     }
-<<<<<<< HEAD
-=======
-    /*these changes will be in next .apk
-    1. complete chart
-    2. responsive UI
-    3. last scann will be saved as local cache
-
-    * */
->>>>>>> f669b12 (sadfgsadf)
+    private fun convertMatToBitMap(input: Mat): Bitmap {
+        var bmp: Bitmap
+        val rgb = Mat()
+        Imgproc.cvtColor(input, rgb, Imgproc.COLOR_BGR2RGB)
+//        try {
+            bmp = Bitmap.createBitmap(rgb.cols(), rgb.rows(), Bitmap.Config.ARGB_8888)
+            Utils.matToBitmap(rgb, bmp)
+//        } catch (e: CvException) {
+//            Log.i(com.sample.edgedetection.processor.TAG, e.message.toString())
+//        }
+        return bmp
+    }
 
     @SuppressLint("CheckResult")
     override fun onPreviewFrame(p0: ByteArray?, p1: Camera?) {
@@ -470,3 +475,5 @@ class ScanPresenter(
     }
 
 }
+
+

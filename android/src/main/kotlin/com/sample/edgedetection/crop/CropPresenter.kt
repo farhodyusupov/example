@@ -158,40 +158,96 @@ class CropPresenter(
 
 
     fun save() {
-        val file = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO) as String);
-
+        val file1 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO1) as String);
+        val file2 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO2) as String);
+        val file3 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO3) as String);
+        val file4 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO4) as String);
+        val file5 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO5) as String);
         val rotatePic = rotateBitmap
-        if (null != rotatePic) {
-            val outStream = FileOutputStream(file)
-            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
-            outStream.flush()
-            outStream.close()
-            rotatePic.recycle()
-            Log.i(TAG, "RotateBitmap Saved")
-        } else {
-            //first save enhanced picture, if picture is not enhanced, save cropped picture, otherwise nothing to do
-            val pic = enhancedPicture
-
-            if (null != pic) {
-                val outStream = FileOutputStream(file)
-                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
-                outStream.flush()
-                outStream.close()
-                pic.recycle()
-                Log.i(TAG, "EnhancedPicture Saved")
-            } else {
-                val cropPic = croppedBitmap
-                if (null != cropPic) {
-                    val outStream = FileOutputStream(file)
-                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
-                    outStream.flush()
-                    outStream.close()
-                    cropPic.recycle()
-
-                    Log.i(TAG, "CroppedBitmap Saved")
-                }
-            }
-        }
+//        if (null != rotatePic) {
+//            Log.i("rotated picture", "rotated picture worked")
+//
+//            val outStream1 = FileOutputStream(file1)
+//            val outStream2 = FileOutputStream(file2)
+//            val outStream3 = FileOutputStream(file3)
+//            val outStream4 = FileOutputStream(file4)
+//            val outStream5 = FileOutputStream(file5)
+//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
+//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
+//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
+//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
+//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
+//            outStream1.flush()
+//            outStream2.flush()
+//            outStream3.flush()
+//            outStream4.flush()
+//            outStream5.flush()
+//            outStream1.close()
+//            outStream2.close()
+//            outStream3.close()
+//            outStream4.close()
+//            outStream5.close()
+//            rotatePic.recycle()
+//            Log.i(TAG, "RotateBitmap Saved")
+//        } else {
+//            //first save enhanced picture, if picture is not enhanced, save cropped picture, otherwise nothing to do
+//            val pic = enhancedPicture
+//
+//            if (null != pic) {
+//                Log.i("enhanced picture", "enhanced picture worked")
+//                val outStream1 = FileOutputStream(file1)
+//                val outStream2 = FileOutputStream(file2)
+//                val outStream3 = FileOutputStream(file3)
+//                val outStream4 = FileOutputStream(file4)
+//                val outStream5 = FileOutputStream(file5)
+//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
+//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
+//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
+//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
+//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
+//                outStream1.flush()
+//                outStream2.flush()
+//                outStream3.flush()
+//                outStream4.flush()
+//                outStream5.flush()
+//                outStream1.close()
+//                outStream2.close()
+//                outStream3.close()
+//                outStream4.close()
+//                outStream5.close()
+//                pic.recycle()
+//            } else {
+//
+//                val cropPic = croppedBitmap
+//                if (null != cropPic) {
+//                    Log.i("cropped picture", "cropped picture worked")
+//
+//                    val outStream1 = FileOutputStream(file1)
+//                    val outStream2 = FileOutputStream(file2)
+//                    val outStream3 = FileOutputStream(file3)
+//                    val outStream4 = FileOutputStream(file4)
+//                    val outStream5 = FileOutputStream(file5)
+//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
+//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
+//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
+//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
+//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
+//                    outStream1.flush()
+//                    outStream2.flush()
+//                    outStream3.flush()
+//                    outStream4.flush()
+//                    outStream5.flush()
+//                    outStream1.close()
+//                    outStream2.close()
+//                    outStream3.close()
+//                    outStream4.close()
+//                    outStream5.close()
+//                    cropPic.recycle()
+//
+//                    Log.i(TAG, "CroppedBitmap Saved")
+//                }
+//            }
+//        }
     }
 
     fun Bitmap.rotateFloat(degrees: Float): Bitmap {

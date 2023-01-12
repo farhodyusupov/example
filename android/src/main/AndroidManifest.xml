@@ -20,6 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ImagesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_images"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FiveImageActivity"
             android:exported="false">
             <meta-data

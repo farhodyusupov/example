@@ -3,6 +3,7 @@ package com.sample.edgedetection
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.sample.edgedetection.scan.ScanActivity
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
@@ -44,7 +45,11 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
     companion object {
         public const val INITIAL_BUNDLE = "initial_bundle"
         public const val FROM_GALLERY = "from_gallery"
-        public const val SAVE_TO = "save_to"
+        public const val SAVE_TO1 = "save_to1"
+        public const val SAVE_TO2 = "save_to2"
+        public const val SAVE_TO3 = "save_to3"
+        public const val SAVE_TO4 = "save_to4"
+        public const val SAVE_TO5 = "save_to5"
         public const val CAN_USE_GALLERY = "can_use_gallery"
         public const val SCAN_TITLE = "scan_title"
         public const val CROP_TITLE = "crop_title"
@@ -104,7 +109,12 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         val initialIntent =
             Intent(Intent(getActivity()?.applicationContext, ScanActivity::class.java))
         val bundle = Bundle();
-        bundle.putString(SAVE_TO, call.argument<String>(SAVE_TO) as String)
+        Log.i("imagePath", call.argument<String>(SAVE_TO1)as String)
+        bundle.putString(SAVE_TO1, call.argument<String>(SAVE_TO1) as String)
+        bundle.putString(SAVE_TO2, call.argument<String>(SAVE_TO2) as String)
+        bundle.putString(SAVE_TO3, call.argument<String>(SAVE_TO3) as String)
+        bundle.putString(SAVE_TO4, call.argument<String>(SAVE_TO4) as String)
+        bundle.putString(SAVE_TO5, call.argument<String>(SAVE_TO5) as String)
         bundle.putString(SCAN_TITLE, call.argument<String>(SCAN_TITLE) as String)
         bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
         bundle.putString(
@@ -125,7 +135,8 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         val initialIntent =
             Intent(Intent(getActivity()?.applicationContext, ScanActivity::class.java))
         val bundle = Bundle();
-        bundle.putString(SAVE_TO, call.argument<String>(SAVE_TO) as String)
+//        bundle.putParcelableArrayList(SAVE_TO, call.argument<ArrayList<String>>(SAVE_TO) as ArrayList<String>);
+        bundle.putString(SAVE_TO1, call.argument<String>(SAVE_TO1) as String)
         bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
         bundle.putString(
             CROP_BLACK_WHITE_TITLE,
@@ -168,3 +179,4 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         result = null
     }
 }
+
