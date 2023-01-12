@@ -50,6 +50,7 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         public const val CROP_TITLE = "crop_title"
         public const val CROP_BLACK_WHITE_TITLE = "crop_black_white_title"
         public const val CROP_RESET_TITLE = "crop_reset_title"
+        public const val IMAGE_LIST = "imageList"
     }
 
     fun setActivityPluginBinding(activityPluginBinding: ActivityPluginBinding) {

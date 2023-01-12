@@ -7,12 +7,14 @@ class EdgeDetection {
 
   static Future<bool> detectEdge(String saveTo,
       {bool canUseGallery: true,
+        List<String> imageList,
       String androidScanTitle: "Scanning",
       String androidCropTitle: "Crop",
       String androidCropBlackWhiteTitle: "Black White",
       String androidCropReset: "Reset"}) async {
     return await _channel.invokeMethod('edge_detect', {
       'save_to': saveTo,
+      'image_list': imageList,
       'can_use_gallery': canUseGallery,
       'scan_title': androidScanTitle,
       'crop_title': androidCropTitle,

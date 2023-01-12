@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> getImage() async {
-    imageList.map((e) => {print(e)});
     bool isCameraGranted = await Permission.camera.request().isGranted;
     if (!isCameraGranted) {
       isCameraGranted =
@@ -41,6 +40,7 @@ class _MyAppState extends State<MyApp> {
       //Make sure to await the call to detectEdge.
       bool success = await EdgeDetection.detectEdge(
         imagePath,
+        imageList:imageList,
         canUseGallery: true,
         androidScanTitle: 'Сканирование',
         // use custom localizations for android
