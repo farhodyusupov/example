@@ -9,8 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25d5a51-2eb9-4e8f-9ff7-7db4aa5b3190" name="Changes" comment="sadfgsadf&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="c25d5a51-2eb9-4e8f-9ff7-7db4aa5b3190" name="Changes" comment="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +17,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\USER\.android\avd\Pixel_6_Pro_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.0.131:5555]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -63,10 +62,14 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../android" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.-2026379892">
+      <recent name="com.sample.edgedetection" />
+    </key>
+    <key name="android.template.222436510">
       <recent name="com.sample.edgedetection" />
     </key>
   </component>
@@ -182,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672987669910</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
+      <created>1673947010015</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673947010015</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,6 +209,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="edge detection" />
     <MESSAGE value="sadfgsadf&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="sadfgsadf&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
+    <MESSAGE value="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
   </component>
 </project>
