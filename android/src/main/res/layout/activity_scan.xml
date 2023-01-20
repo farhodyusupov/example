@@ -13,16 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.sample.edgedetection.view.PaperRectangle
-        android:id="@+id/paper_rect"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="0dp"
-        android:background="@color/colorTransparent" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,6 +74,15 @@
            android:textSize="55dp"
            android:layout_centerInParent="true"
            android:textColor="#000000" />
+
+       <com.sample.edgedetection.view.PaperRectangle
+           android:id="@+id/paper_rect"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginStart="-1dp"
+           android:layout_marginTop="7dp"
+           android:layout_marginEnd="0dp"
+           android:background="@color/colorTransparent" />
 
    </RelativeLayout>
     <!--   <LinearLayout-->

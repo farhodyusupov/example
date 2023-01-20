@@ -232,6 +232,8 @@ class ScanPresenter(
         mCamera?.enableShutterSound(false)
 
     }
+
+
     // this func must take image path and detect the edge of image and save the image again it`s path
     fun detectEdge(pic: Mat) {
         SourceManager.corners = processPicture(pic)
@@ -243,7 +245,7 @@ class ScanPresenter(
         (context as Activity).startActivityForResult(cropIntent, REQUEST_CODE);
 
 
-        images.clear()
+//        images.clear()
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {
@@ -318,15 +320,14 @@ class ScanPresenter(
                     images[2].recycle()
                     images[3].recycle()
                     images[4].recycle()
-                    val bundle = Bundle();
                     val fiveImageIntent = Intent(context, FiveImageActivity::class.java)
-                    fiveImageIntent.putExtra("fiveImageBundle", bundle)
 
                     fiveImageIntent.putExtra("image1", initialBundle.getString(EdgeDetectionHandler.SAVE_TO1) as String)
                     fiveImageIntent.putExtra("image2", initialBundle.getString(EdgeDetectionHandler.SAVE_TO2) as String)
                     fiveImageIntent.putExtra("image3", initialBundle.getString(EdgeDetectionHandler.SAVE_TO3) as String)
                     fiveImageIntent.putExtra("image4", initialBundle.getString(EdgeDetectionHandler.SAVE_TO4) as String)
                     fiveImageIntent.putExtra("image5", initialBundle.getString(EdgeDetectionHandler.SAVE_TO5) as String)
+                    fiveImageIntent.putExtra(EdgeDetectionHandler.INITIAL_BUNDLE, initialBundle)
                     (context as Activity).startActivity(fiveImageIntent);
 
 //                                            detectEdge(pic)
@@ -475,5 +476,7 @@ class ScanPresenter(
     }
 
 }
+
+
 
 
