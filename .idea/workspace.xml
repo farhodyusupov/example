@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25d5a51-2eb9-4e8f-9ff7-7db4aa5b3190" name="Changes" comment="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
+    <list default="true" id="c25d5a51-2eb9-4e8f-9ff7-7db4aa5b3190" name="Changes" comment="5 images saved, next step is after detecting edge cropped image must be saved to the path again. and view must return to previoues view&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_26_2023_5_36_PM_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_err_pid13040.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +26,15 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="PUSH_TAGS">
       <GitPushTagMode>
         <option name="argument" value="--tags" />
@@ -31,7 +42,6 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -206,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674701492204</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="5 images saved, next step is after detecting edge cropped image must be saved to the path again. and view must return to previoues view&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection">
+      <created>1674722187293</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674722187293</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +242,8 @@
     <MESSAGE value="sadfgsadf&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
     <MESSAGE value="5 images showed in imageviews&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
     <MESSAGE value="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="5 images saved&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
+    <MESSAGE value="detecting edges for 5 images." />
+    <MESSAGE value="5 images saved, next step is after detecting edge cropped image must be saved to the path again. and view must return to previoues view&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 images saved, next step is after detecting edge cropped image must be saved to the path again. and view must return to previoues view&#10;Merge branch 'main' of https://github.com/farhodyusupov/Edge-detection" />
   </component>
 </project>
