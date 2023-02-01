@@ -7,8 +7,6 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.sample.edgedetection.EdgeDetectionHandler
-import com.sample.edgedetection.MainActivity
 import com.sample.edgedetection.SourceManager
 import com.sample.edgedetection.processor.Corners
 import com.sample.edgedetection.processor.TAG
@@ -26,9 +24,7 @@ import java.io.FileOutputStream
 const val IMAGES_DIR = "smart_scanner"
 
 class CropPresenter(
-    private val context: Context,
-    private val iCropView: ICropView.Proxy,
-    private val initialBundle: Bundle
+    private val context: Context, private val iCropView: ICropView.Proxy, private val initialBundle: Bundle
 ) {
     private val picture: Mat? = SourceManager.pic
 
@@ -42,8 +38,7 @@ class CropPresenter(
     fun onViewsReady(paperWidth: Int, paperHeight: Int) {
         iCropView.getPaperRect().onCorners2Crop(corners, picture?.size(), paperWidth, paperHeight)
         val bitmap = Bitmap.createBitmap(
-            picture?.width() ?: 1080, picture?.height()
-                ?: 1920, Bitmap.Config.ARGB_8888
+            picture?.width() ?: 1080, picture?.height() ?: 1920, Bitmap.Config.ARGB_8888
         )
         Utils.matToBitmap(picture, bitmap, true)
         iCropView.getPaper().setImageBitmap(bitmap)
@@ -64,20 +59,16 @@ class CropPresenter(
 
         Observable.create<Mat> {
             it.onNext(cropPicture(picture, iCropView.getPaperRect().getCorners2Crop()))
-        }
-            .subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { pc ->
-                Log.i(TAG, "cropped picture: $pc")
-                croppedPicture = pc
-                croppedBitmap =
-                    Bitmap.createBitmap(pc.width(), pc.height(), Bitmap.Config.ARGB_8888)
-                Utils.matToBitmap(pc, croppedBitmap)
-                iCropView.getCroppedPaper().setImageBitmap(croppedBitmap)
+        }.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe { pc ->
+            Log.i(TAG, "cropped picture: $pc")
+            croppedPicture = pc
+            croppedBitmap = Bitmap.createBitmap(pc.width(), pc.height(), Bitmap.Config.ARGB_8888)
+            Utils.matToBitmap(pc, croppedBitmap)
+            iCropView.getCroppedPaper().setImageBitmap(croppedBitmap)
 
-//                iCropView.getPaper().visibility = View.GONE
-//                iCropView.getPaperRect().visibility = View.GONE
-            }
+                iCropView.getPaper().visibility = View.GONE
+                iCropView.getPaperRect().visibility = View.GONE
+        }
 
     }
 
@@ -102,16 +93,13 @@ class CropPresenter(
 
         Observable.create<Bitmap> {
             it.onNext(enhancePicture(imgToEnhance))
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe { pc ->
+
+            enhancedPicture = pc
+            rotateBitmap = enhancedPicture
+
+            iCropView.getCroppedPaper().setImageBitmap(pc)
         }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { pc ->
-
-                enhancedPicture = pc
-                rotateBitmap = enhancedPicture
-
-                iCropView.getCroppedPaper().setImageBitmap(pc)
-            }
     }
 
     fun reset() {
@@ -158,96 +146,48 @@ class CropPresenter(
 
 
     fun save() {
-        val file1 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO1) as String);
-        val file2 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO2) as String);
-        val file3 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO3) as String);
-        val file4 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO4) as String);
-        val file5 = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO5) as String);
+        val fdelete: File = File(initialBundle.getString("image") as String)
+        if (fdelete.exists()) {
+            fdelete.delete()
+            Log.i("file",initialBundle.getString("image") as String)
+        }
+        Log.i("saving crop", initialBundle.getString("image") as String)
+        val file = File(initialBundle.getString("image") as String);
         val rotatePic = rotateBitmap
-//        if (null != rotatePic) {
-//            Log.i("rotated picture", "rotated picture worked")
-//
-//            val outStream1 = FileOutputStream(file1)
-//            val outStream2 = FileOutputStream(file2)
-//            val outStream3 = FileOutputStream(file3)
-//            val outStream4 = FileOutputStream(file4)
-//            val outStream5 = FileOutputStream(file5)
-//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
-//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
-//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
-//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
-//            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
-//            outStream1.flush()
-//            outStream2.flush()
-//            outStream3.flush()
-//            outStream4.flush()
-//            outStream5.flush()
-//            outStream1.close()
-//            outStream2.close()
-//            outStream3.close()
-//            outStream4.close()
-//            outStream5.close()
-//            rotatePic.recycle()
-//            Log.i(TAG, "RotateBitmap Saved")
-//        } else {
-//            //first save enhanced picture, if picture is not enhanced, save cropped picture, otherwise nothing to do
-//            val pic = enhancedPicture
-//
-//            if (null != pic) {
-//                Log.i("enhanced picture", "enhanced picture worked")
-//                val outStream1 = FileOutputStream(file1)
-//                val outStream2 = FileOutputStream(file2)
-//                val outStream3 = FileOutputStream(file3)
-//                val outStream4 = FileOutputStream(file4)
-//                val outStream5 = FileOutputStream(file5)
-//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
-//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
-//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
-//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
-//                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
-//                outStream1.flush()
-//                outStream2.flush()
-//                outStream3.flush()
-//                outStream4.flush()
-//                outStream5.flush()
-//                outStream1.close()
-//                outStream2.close()
-//                outStream3.close()
-//                outStream4.close()
-//                outStream5.close()
-//                pic.recycle()
-//            } else {
-//
-//                val cropPic = croppedBitmap
-//                if (null != cropPic) {
-//                    Log.i("cropped picture", "cropped picture worked")
-//
-//                    val outStream1 = FileOutputStream(file1)
-//                    val outStream2 = FileOutputStream(file2)
-//                    val outStream3 = FileOutputStream(file3)
-//                    val outStream4 = FileOutputStream(file4)
-//                    val outStream5 = FileOutputStream(file5)
-//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream1)
-//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream2)
-//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream3)
-//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream4)
-//                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream5)
-//                    outStream1.flush()
-//                    outStream2.flush()
-//                    outStream3.flush()
-//                    outStream4.flush()
-//                    outStream5.flush()
-//                    outStream1.close()
-//                    outStream2.close()
-//                    outStream3.close()
-//                    outStream4.close()
-//                    outStream5.close()
-//                    cropPic.recycle()
-//
-//                    Log.i(TAG, "CroppedBitmap Saved")
-//                }
-//            }
-//        }
+        if (null != rotatePic) {
+            Log.i("rotated picture", "rotated picture worked")
+
+            val outStream = FileOutputStream(file)
+            rotatePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+            outStream.flush()
+            outStream.close()
+            rotatePic.recycle()
+            Log.i(TAG, "RotateBitmap Saved")
+        } else {
+            //first save enhanced picture, if picture is not enhanced, save cropped picture, otherwise nothing to do
+            val pic = enhancedPicture
+
+            if (null != pic) {
+                Log.i("enhanced picture", "enhanced picture worked")
+                val outStream = FileOutputStream(file)
+                pic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+                outStream.flush()
+                outStream.close()
+                pic.recycle()
+            } else {
+
+                val cropPic = croppedBitmap
+                if (null != cropPic) {
+
+                    val outStream = FileOutputStream(file)
+                    cropPic.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+                    outStream.flush()
+                    outStream.close()
+                    cropPic.recycle()
+                    Log.i(TAG, "CroppedBitmap Saved")
+                }
+            }
+        }
     }
 
     fun Bitmap.rotateFloat(degrees: Float): Bitmap {
@@ -265,21 +205,12 @@ class CropPresenter(
 
         // Resize the bitmap
         val scaledBitmap = Bitmap.createScaledBitmap(
-            this,
-            width,
-            height,
-            true
+            this, width, height, true
         )
 
         // Create and return the rotated bitmap
         return Bitmap.createBitmap(
-            scaledBitmap,
-            0,
-            0,
-            scaledBitmap.width,
-            scaledBitmap.height,
-            matrix,
-            true
+            scaledBitmap, 0, 0, scaledBitmap.width, scaledBitmap.height, matrix, true
         )
     }
 }
